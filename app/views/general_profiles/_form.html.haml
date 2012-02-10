@@ -1,0 +1,16 @@
+= semantic_form_for [@user,@general_profile] do |f|
+  = f.inputs do
+    = f.input :first_name, :label => 'First Name'  
+    = f.input :last_name, :label => 'Last Name'  
+    = f.input :about_yourself, :label => 'Tell us more about yourself as a whole human being <3', :hint => 'links to blogs, github repositories, facebook page, linkedin profile, pinterest, grooveshark, portfolios, and whatever else you think is interesting and unique about you'
+    = f.input :heartsong, :label => 'Your Heartsong', :hint => 'In less than 100 words, what drives your passion and makes your heart sing?'
+    = f.input :intentcast, :label => 'Intentcast', :hint => 'What projects or initiatives do you want to help manifest? Cast your intent!'
+    = f.input :superpowers, :label => 'Superpowers', :hint => 'characteristics/qualities *you* believe define you; qualities *others* seem to value in you'
+    = f.input :location, :label => 'Where are ya located?', :hint => 'City, State or Province, Country'
+    = f.input :tag_names, :label => 'What is your area of interest?', :hint => 'Please enter keyword tags here'
+    = f.input :expertise, :label => 'What\'s your area of competence/expertise?', :hint => 'Please discuss your areas of expertise here'
+    = f.input :your_projects, :label => 'What projects are you working on?', :hint => 'Links to project website or github repositories'
+    = f.input :user_id, :as => :hidden, :value => current_user.id 
+  = f.buttons do
+    = f.commit_button
+

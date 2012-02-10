@@ -1,0 +1,17 @@
+%h1 Listing general_profiles
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @general_profiles.each do |general_profile|
+    %tr
+      %td= link_to 'Show', general_profile
+      %td= link_to 'Edit', edit_general_profile_path(general_profile)
+      %td= link_to 'Destroy', general_profile, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New General profile', new_general_profile_path

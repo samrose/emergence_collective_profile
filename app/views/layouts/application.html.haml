@@ -1,0 +1,26 @@
+!!!
+%html
+  %head
+    %title Emergence Collective
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    %p.notice= notice
+    %p.alert= alert
+  %body
+  .ec-wrapper
+    %h1.site-name
+      = link_to "Emergence Collective", root_path
+  = yield
+.authenticate
+  - if user_signed_in?
+  - profile = GeneralProfile.where("user_id = ?", current_user.id)
+    - for your_profile in profile do
+      - profile_id = your_profile.id
+    = link_to "Logout", users_logout_path
+    - if your_profile.nil?
+      = link_to "Create your profile", new_general_profile_path
+    - else
+      = link_to "Your Profile", general_profile_path(profile_id)
+  - else
+    = link_to "Login", users_login_path

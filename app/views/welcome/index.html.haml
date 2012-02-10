@@ -1,0 +1,7 @@
+- if user_signed_in?
+  %h2 Profiles
+  %ul
+  - profile = GeneralProfile.find(:all)
+  - for this_profile in profile do
+    %li
+      = link_to "#{this_profile.first_name} #{this_profile.last_name}", general_profile_path(this_profile)

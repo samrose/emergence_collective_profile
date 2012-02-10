@@ -1,0 +1,37 @@
+.general_profile
+  .gravatar-image
+    - user = User.find(@general_profile.user_id)
+    = gravatar_image_tag("#{user.email}", :alt => "#{@general_profile.first_name} #{@general_profile.last_name}", :class => 'user-avatar', :gravatar => { :size => 200, :secure => true })
+    = link_to "(Click here to get an avatar you can use anywhere at Gravatar)", "https://en.gravatar.com/site/signup/"
+
+  .full_name
+    %h3 Name:
+    = @general_profile.first_name 
+    = @general_profile.last_name 
+  .about_you
+    %h3 About me:
+    = @general_profile.about_yourself
+  .heartsong
+    %h3 My Heartsong:
+    = @general_profile.heartsong
+  .intentcast
+    %h3 My Intentcast:
+    = @general_profile.intentcast
+  .projects
+    %h3 My projects:
+    = @general_profile.your_projects
+  .superpowers
+    %h3 My superpowers:
+    = @general_profile.superpowers
+  .location
+  -unless @general_profile.location.nil?
+    %h3 My location
+    = image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=5&markers=#{@general_profile.latitude}%2C#{@general_profile.longitude}"
+    %h3 Areas of interest
+    - for tag in @general_profile.tags
+      - tag_name = tag.name
+      = tag_name
+.links
+  - if current_user.id == @general_profile.user_id
+    = link_to 'Edit your profile', edit_general_profile_path(@general_profile)
+
